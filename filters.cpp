@@ -10,11 +10,14 @@ void saveImage ();
 void loadImage2 ();
 void equlaity();
 
+void invertImage();
+
 void merge ();
 
 int main()
 {
     loadImage();
+    invertImage();
     merge();
     saveImage();
 }
@@ -71,6 +74,16 @@ void equlaity(){
     }
 }
 
+//_________________________________________
+void invertImage() {
+    //invert image (invert black to white and white to black and grey to the opposite level of brightness)
+    for (int i = 0; i < SIZE; ++i) {
+        for (int j = 0; j < SIZE; ++j) {
+            newImage[i][j] = 255 - image[i][j];
+        }
+    }
+    equlaity();
+}
 //_________________________________________
 void merge() {
     long avg = 0;
