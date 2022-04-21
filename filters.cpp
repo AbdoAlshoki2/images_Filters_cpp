@@ -19,6 +19,7 @@ void rotateImage180();
 void rotateImage270();
 
 void lighting();
+void shrink();
 
 int main()
 {
@@ -27,6 +28,7 @@ int main()
     merge();
     rotate();
     lighting();
+    shrink();
     saveImage();
 }
 
@@ -174,6 +176,30 @@ void lighting() {
             // divide each pixel by 2
         }
     }
+}
+//_________________________________________
+void shrink(){
+    int x;
+    cout << "enter the the percentage \n"
+         << "1- 25%\n"
+         << "2- 33%\n"
+         << "3- 50%\n";
+    cin>>x;
+    // depend on user .. make every 2 pixels in new image = 1 pixel in original
+    // or 3 pixels in new image = 1 pixel in original image
+    // or 4 pixels in new image = 1 pixel in original image
+
+    for (int i = 1; i < SIZE -1 ; i++) {
+        for (int j = 1; j < SIZE - 1; j++) {
+            if(x == 1 or x ==25)
+                newImage[i/4][j/4] = image[i][j];
+            else if (x == 2 or x == 33)
+                newImage[i/3][j/3] = image[i][j];
+            else if (x == 3 or x == 50)
+                newImage[i/2][j/2] = image[i][j];
+        }
+    }
+    equlaity();
 }
 
 
