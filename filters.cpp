@@ -12,6 +12,12 @@ void equlaity();
 
 void invertImage();
 void merge ();
+
+void rotate();
+void rotateImage90();
+void rotateImage180();
+void rotateImage270();
+
 void lighting();
 
 int main()
@@ -19,6 +25,7 @@ int main()
     loadImage();
     invertImage();
     merge();
+    rotate();
     lighting();
     saveImage();
 }
@@ -95,6 +102,58 @@ void merge() {
             image[i][j] = avg;
         }
     }
+}
+//_________________________________________
+void rotate(){
+    //check the input from the user
+    string numRotate;
+
+    while (true) {
+        cout << "Please Enter valid Rotates (90, 180, 270):\n";
+        cin >> numRotate;
+        if (numRotate == "90" or numRotate == "180" or numRotate == "270")
+            break;
+    }
+    if(numRotate == "90"){
+        rotateImage90();
+    }
+    else if(numRotate == "180"){
+        rotateImage180();
+    }
+    else if(numRotate == "270"){
+        rotateImage270();
+    }
+
+}
+
+void rotateImage90() {
+    //make image rotate 90 degree
+    for (int i = 0; i < SIZE; ++i) {
+        for (int j = 0; j < SIZE; ++j) {
+            newImage[i][j] = image[255-j][i];
+        }
+    }
+    equlaity();
+}
+
+void rotateImage180() {
+    //make image rotate 180
+    for (int i = 0; i < SIZE; ++i) {
+        for (int j = 0; j < SIZE; ++j) {
+            newImage[i][j] = image[255 - i][255 - j];
+        }
+    }
+    equlaity();
+}
+
+void rotateImage270() {
+    //make image rotate 270
+    for (int i = 0; i < SIZE; ++i) {
+        for (int j = 0; j < SIZE; ++j) {
+            newImage[i][j] = image[j][255 - i];
+        }
+    }
+    equlaity();
 }
 //_________________________________________
 void lighting() {
