@@ -3,6 +3,7 @@
 
 using namespace std;
 unsigned char image[SIZE][SIZE] , newImage[SIZE][SIZE], image2[SIZE][SIZE];
+unsigned char quarter1[128][128],quarter2[128][128] , quarter3[128][128],quarter4[128][128];
 
 
 void loadImage ();
@@ -19,6 +20,7 @@ void rotateImage180();
 void rotateImage270();
 
 void lighting();
+void enlarge();
 void shrink();
 
 int main()
@@ -28,6 +30,7 @@ int main()
     merge();
     rotate();
     lighting();
+    enlarge();
     shrink();
     saveImage();
 }
@@ -176,6 +179,56 @@ void lighting() {
             // divide each pixel by 2
         }
     }
+}
+//_________________________________________
+void enlarge() {
+    for (int i = 0; i < SIZE ; i++) {
+        for (int j = 0; j < SIZE; j++) {
+            if (i < 128 and j < 128) {
+                quarter1[i][j] = image[i][j];
+            } else if (i < 128 and j > 128) {
+                quarter2[i][j - 128] = image[i][j];
+            } else if (i > 128 and j < 128) {
+                quarter3[i - 128][j] = image[i][j];
+            } else if (i > 128 and j > 128) {
+                quarter4[i - 128][j - 128] = image[i][j];
+            }
+        }
+    }
+    int choice;
+    cout << "Please enter the quarter you want:";
+    cin>> choice;
+    if(choice == 1){
+        for (int i = 0; i < SIZE ; i++) {
+            for (int j = 0; j < SIZE ; j++) {
+                newImage[i][j] = quarter1[i/2][j/2];
+            }
+        }
+
+    }
+
+    if(choice == 2){
+        for(int i = 0; i < SIZE; i++){
+            for(int j = 0; j < SIZE; j++){
+                newImage[i][j] = quarter2[i/2][j/2];
+            }
+        }
+    }
+    if(choice == 3) {
+        for (int i = 0; i < SIZE; i++) {
+            for (int j = 0; j < SIZE; j++) {
+                newImage[i][j] = quarter3[i / 2][j / 2];
+            }
+        }
+    }
+    if(choice == 4){
+        for (int i = 0; i < SIZE; i++) {
+            for (int j = 0; j < SIZE; j++) {
+                newImage[i][j] = quarter4[i / 2][j / 2];
+            }
+        }
+    }
+    equlaity();
 }
 //_________________________________________
 void shrink(){
