@@ -11,14 +11,15 @@ void loadImage2 ();
 void equlaity();
 
 void invertImage();
-
 void merge ();
+void lighting();
 
 int main()
 {
     loadImage();
     invertImage();
     merge();
+    lighting();
     saveImage();
 }
 
@@ -92,6 +93,26 @@ void merge() {
         for (int j = 0; j< SIZE; j++) {
             avg = (image[i][j] + image2[i][j]) / 2;
             image[i][j] = avg;
+        }
+    }
+}
+//_________________________________________
+void lighting() {
+    string choice;
+    cout<<"Do you want to make it lighter or darker"<<endl;
+    cin>>choice;
+    for_each(choice.begin(), choice.end(), [](char & c){
+        c = ::tolower(c);
+    });
+    for (int i = 0; i < SIZE; i++) {
+        for (int j = 0; j< SIZE; j++) {
+            if (choice == "lighter") {
+                image[i][j] = fmin(255,image[i][j]*1.5);
+                // make each pixel by 1.5  and take the minimum of 255 and the multiplication
+            }
+            if (choice == "darker")
+                image[i][j] *= 0.5;
+            // divide each pixel by 2
         }
     }
 }
