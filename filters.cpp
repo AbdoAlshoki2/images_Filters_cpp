@@ -25,6 +25,7 @@ void rotateImage180();
 void rotateImage270();
 
 void lighting();
+void detectimage();
 void enlarge();
 void shrink();
 void shuffle();
@@ -39,6 +40,7 @@ int main()
     flipping();
     rotate();
     lighting();
+    detectimage();
     enlarge();
     shrink();
     shuffle();
@@ -103,7 +105,7 @@ void equlaity(){
 void BlacknWhite(){
     for (int i=0;i<SIZE;i++){
         for(int j=0;j<SIZE;j++){
-            if(image[i][j]>127)
+            if(image[i][j]>127)    // invert black 
                 image[i][j]=255;
             else
                 image[i][j]=0;
@@ -140,7 +142,7 @@ void flipping(){
     if (x == 1)
         flipLeftRight();
     else if (x == 2)
-        flipUpDown();
+        flipUpDown();      // ivert to flipdown
 }
 //_________________________________________
 void flipLeftRight()
@@ -237,6 +239,37 @@ void lighting() {
     }
 }
 //_________________________________________
+void detectimage(){
+
+for (int i = 0; i < SIZE; i++) {
+    for (int j = 0; j< SIZE; j++) {
+
+       int x,y;
+       if ( (i-1)>0 && (i+1)<255 && (j-1>0) && (j+1)<255 ) {
+
+
+         x=image[i+1][j]+image[i-1][j]-2*image[i][j];
+         y= image[i][j+1]+image[i][j-1]-2*image[i][j];
+         newimage[i][j]=abs(255-(abs(x)+abs(y)));
+
+       }
+      else
+            newimage[i][j]=255 ;
+
+
+
+
+    }
+}
+
+
+
+
+}
+
+s
+
+/////
 void enlarge() {
     for (int i = 0; i < SIZE ; i++) {
         for (int j = 0; j < SIZE; j++) {
