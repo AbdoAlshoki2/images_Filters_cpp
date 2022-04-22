@@ -28,6 +28,7 @@ void lighting();
 void detectimage();
 void enlarge();
 void shrink();
+void mirrorimage();
 void shuffle();
 void bluring();
 
@@ -43,6 +44,7 @@ int main()
     detectimage();
     enlarge();
     shrink();
+    mirrorimage();
     shuffle();
     bluring();
 
@@ -254,20 +256,11 @@ for (int i = 0; i < SIZE; i++) {
 
        }
       else
-            newimage[i][j]=255 ;
-
-
-
+         newimage[i][j]=255 ;
 
     }
 }
-
-
-
-
 }
-
-s
 
 /////
 void enlarge() {
@@ -348,6 +341,36 @@ void shrink(){
     equlaity();
 }
 //_________________________________________
+void mirrorimage(){
+
+int n;
+    cout<<" press 1 for right mirror, 2 for left, 3 for upper , 4 for lower:   ";
+    cin>>n;
+    if(n==1){
+    for (int i = 0; i < SIZE; i++) {
+        for (int j = 0; j < SIZE / 2; j++) {        /// divide each pixel by 2
+                        image[i][j]=image[i][255-j];
+                        }}}
+
+    if(n==2){
+                            for (int i = 0; i < SIZE; i++) {
+                                for (int j = 0; j < SIZE/2; j++) {
+                                            image[i][255-j]=image[i][j];
+                                            }}}
+    if(n==3){
+        for (int i = 0; i < SIZE/2; i++) {
+            for (int j = 0; j < SIZE; j++) {
+
+                    image[255-i][j]=image[i][j];
+                    }}}
+    if(n==4){
+        for (int i = 0; i < SIZE/2; i++) {
+            for (int j = 0; j < SIZE; j++) {
+                    image[i][j]=image[255-i][j];}}}
+
+}
+    
+////////////
 void shuffle(){
     string choice;
     cout<<"enter the order you like:";
