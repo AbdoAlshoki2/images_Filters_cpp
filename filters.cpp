@@ -22,7 +22,7 @@ void rotateImage270();
 void lighting();
 void enlarge();
 void shrink();
-
+void shuffle();
 void bluring();
 
 int main()
@@ -34,7 +34,9 @@ int main()
     lighting();
     enlarge();
     shrink();
+    shuffle();
     bluring();
+
     saveImage();
 }
 
@@ -254,6 +256,79 @@ void shrink(){
             else if (x == 3 or x == 50)
                 newImage[i/2][j/2] = image[i][j];
         }
+    }
+    equlaity();
+}
+//_________________________________________
+void shuffle(){
+    string choice;
+    cout<<"enter the order you like:";
+    cin>> choice;
+    for (int i = 0; i < SIZE; i++) {
+        for (int j = 0; j < SIZE; j++) {
+            if (i < 128 and j < 128) {
+                quarter1[i][j] = image[i][j];
+            } else if (i < 128 and j > 128) {
+                quarter2[i][j - 128] = image[i][j];
+            } else if (i > 128 and j < 128) {
+                quarter3[i - 128][j] = image[i][j];
+            } else if (i > 128 and j > 128) {
+                quarter4[i - 128][j - 128] = image[i][j];
+            }
+        }
+
+        for (int i = 0; i < SIZE; i++) {
+            for (int j = 0; j < SIZE; j++) {
+                if (i < 128 and j < 128) {
+                    if(choice[0] == '1')
+                        newImage[i][j] = quarter1[i][j];
+                    else if(choice[0] == '2')
+                        newImage[i][j] = quarter2[i][j];
+                    else if(choice[0] == '3')
+                        newImage[i][j] = quarter3[i][j];
+                    else if(choice[0] == '4')
+                        newImage[i][j] = quarter4[i][j];
+
+                }
+
+                else if (i < 128 and j > 128) {
+                    if(choice[1] == '1')
+                        newImage[i][j] = quarter1[i][j-128];
+                    else if(choice[1] == '2')
+                        newImage[i][j] = quarter2[i][j-128];
+                    else if(choice[1] == '3')
+                        newImage[i][j] = quarter3[i][j-128];
+                    else if(choice[1] == '4')
+                        newImage[i][j] = quarter4[i][j-128];
+                }
+
+                else if (i > 128 and j < 128) {
+                    if(choice[2] == '1')
+                        newImage[i][j] = quarter1[i-128][j];
+                    else if(choice[2] == '2')
+                        newImage[i][j] = quarter2[i-128][j];
+                    else if(choice[2] == '3')
+                        newImage[i][j] = quarter3[i-128][j];
+                    else if(choice[2] == '4')
+                        newImage[i][j] = quarter4[i-128][j];
+
+                }
+
+                else if (i > 128 and j > 128) {
+                    if(choice[3] == '1')
+                        newImage[i][j] = quarter1[i-128][j-128];
+                    else if(choice[3] == '2')
+                        newImage[i][j] = quarter2[i-128][j-128];
+                    else if(choice[3] == '3')
+                        newImage[i][j] = quarter3[i-128][j-128];
+                    else if(choice[3] == '4')
+                        newImage[i][j] = quarter4[i-128][j-128];
+
+                }
+            }
+
+        }
+
     }
     equlaity();
 }
