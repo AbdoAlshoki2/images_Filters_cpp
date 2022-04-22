@@ -10,9 +10,14 @@ void loadImage ();
 void saveImage ();
 void loadImage2 ();
 void equlaity();
+
 void BlacknWhite();
 void invertImage();
 void merge ();
+
+void flipping();
+void flipLeftRight();
+void flipUpDown();
 
 void rotate();
 void rotateImage90();
@@ -31,6 +36,7 @@ int main()
     BlacknWhite();
     invertImage();
     merge();
+    flipping();
     rotate();
     lighting();
     enlarge();
@@ -94,30 +100,13 @@ void equlaity(){
 }
 
 //_________________________________________
-void BlacknWhite() {
-
-    int x;
-    for (int i = 0; i < SIZE; i++) {
-        for (int j = 0; j < SIZE; j++) {
-            x = 0;
-
-            x += image[i][j];
-        }
-        if (x < 128) {
-            x = x;
-        } else
-            x = x / 3;
-        if (x < 128) {
-            image[i][j] = 0;
-            image[i][j] = 0;
-            image[i][j] = 0;
-
-        } else {
-            image[i][j] = 255;
-            image[i][j] = 255;
-            image[i][j] = 255;
-
-
+void BlacknWhite(){
+    for (int i=0;i<SIZE;i++){
+        for(int j=0;j<SIZE;j++){
+            if(image[i][j]>127)
+                image[i][j]=255;
+            else
+                image[i][j]=0;
         }
     }
 }
@@ -140,6 +129,38 @@ void merge() {
         for (int j = 0; j< SIZE; j++) {
             avg = (image[i][j] + image2[i][j]) / 2;
             image[i][j] = avg;
+        }
+    }
+}
+
+void flipping(){
+    cout<<"how do you want to flip: (enter the number of choice)\n"<<"1- left and right\n2- up and down"<<endl;
+    int x;
+    cin>>x;
+    if (x == 1)
+        flipLeftRight();
+    else if (x == 2)
+        flipUpDown();
+}
+//_________________________________________
+void flipLeftRight()
+{
+    for (int x = 0; x < SIZE; x++) {
+        for (int y = 0; y < SIZE/2; y++) {
+            int temp = image[x][y];
+            image[x][y]=image[x][SIZE-y];
+            image[x][SIZE-y]=temp;
+        }
+    }
+}
+
+void flipUpDown()
+{
+    for (int x = 0; x < SIZE/2; x++) {
+        for (int y = 0; y < SIZE; y++) {
+            int temp = image[x][y];
+            image[x][y]=image[SIZE-x][y];
+            image[SIZE-x][y]=temp;
         }
     }
 }
