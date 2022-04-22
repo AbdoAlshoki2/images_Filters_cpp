@@ -10,7 +10,7 @@ void loadImage ();
 void saveImage ();
 void loadImage2 ();
 void equlaity();
-
+void Black and White(;)
 void invertImage();
 void merge ();
 
@@ -28,6 +28,7 @@ void bluring();
 int main()
 {
     loadImage();
+    Black and White();
     invertImage();
     merge();
     rotate();
@@ -93,6 +94,39 @@ void equlaity(){
 }
 
 //_________________________________________
+void Black and White() {
+
+int x;
+    for(int i=0;i<SIZE;i++) {
+        for (int j = 0; j < SIZE; j++) {
+            x=0;
+  
+            x += image[i][j];
+            }
+            if (x<128){
+                x=x;
+            }
+            else
+                x=x/3;
+            if(x<128){
+                image[i][j]=0;
+                image[i][j]=0;
+                image[i][j]=0;
+
+            }
+            else{
+                image[i][j]=255;
+                image[i][j]=255;
+                image[i][j]=255;
+
+           
+        }
+    }
+
+
+
+
+/////////
 void invertImage() {
     //invert image (invert black to white and white to black and grey to the opposite level of brightness)
     for (int i = 0; i < SIZE; ++i) {
