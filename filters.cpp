@@ -23,6 +23,8 @@ void lighting();
 void enlarge();
 void shrink();
 
+void bluring();
+
 int main()
 {
     loadImage();
@@ -32,6 +34,7 @@ int main()
     lighting();
     enlarge();
     shrink();
+    bluring();
     saveImage();
 }
 
@@ -253,6 +256,22 @@ void shrink(){
         }
     }
     equlaity();
+}
+//_________________________________________
+void bluring(){
+    long avg = 0;
+    // get average of around pixels and put it in the value of pixel
+    for (int i = 0; i < SIZE  ; i++) {
+        for (int j = 0; j < SIZE ; j++) {
+            long long avg = 0;
+            for (int k = i-3; k <= i+3; ++k) {
+                for (int l = j - 3; l <= j + 3; ++l) {
+                    avg += image[k][l];
+                }
+            }
+            image [i][j] = avg/49 ;
+        }
+    }
 }
 
 
