@@ -200,33 +200,37 @@ void enlarge() {
             }
         }
     }
-    int choice;
-    cout << "Please enter the quarter you want:";
-    cin>> choice;
-    if(choice == 1){
+    string choice;
+    while(true) {
+        cout << "Please enter the quarter you want (1, 2, 3 or 4):";
+        cin >> choice;
+        if(choice == "1" or choice == "2" or choice == "3" or choice == "4")
+            break;
+    }
+
+    if(choice == "1"){
         for (int i = 0; i < SIZE ; i++) {
             for (int j = 0; j < SIZE ; j++) {
                 newImage[i][j] = quarter1[i/2][j/2];
             }
         }
-
     }
 
-    if(choice == 2){
+    if(choice == "2"){
         for(int i = 0; i < SIZE; i++){
             for(int j = 0; j < SIZE; j++){
                 newImage[i][j] = quarter2[i/2][j/2];
             }
         }
     }
-    if(choice == 3) {
+    if(choice == "3") {
         for (int i = 0; i < SIZE; i++) {
             for (int j = 0; j < SIZE; j++) {
                 newImage[i][j] = quarter3[i / 2][j / 2];
             }
         }
     }
-    if(choice == 4){
+    if(choice == "4"){
         for (int i = 0; i < SIZE; i++) {
             for (int j = 0; j < SIZE; j++) {
                 newImage[i][j] = quarter4[i / 2][j / 2];
